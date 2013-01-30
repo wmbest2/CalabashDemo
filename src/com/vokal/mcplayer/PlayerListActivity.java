@@ -1,9 +1,13 @@
 package com.vokal.mcplayer;
 
-import android.app.Activity;
 import android.os.Bundle;
 
-public class PlayerListActivity extends Activity
+import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.vokal.network.*;
+
+import com.vokal.mcplayer.models.Player;
+
+public class PlayerListActivity extends SherlockFragmentActivity
 {
     /** Called when the activity is first created. */
     @Override
@@ -11,5 +15,17 @@ public class PlayerListActivity extends Activity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+	
+	NetworkClient.getInstance().setImpl(new HttpURLConnectionImpl(""));
+	
+	PlayerListFragment.setup(this, R.id.player_list);
+
+	new Thread() {
+	    public void run() {
+		try {
+		Player.get(getApplicationContext());
+		} catch (Exception e) {}
+	    }
+	}.start();
     }
 }

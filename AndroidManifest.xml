@@ -3,6 +3,19 @@
       package="com.vokal.mcplayer"
       android:versionCode="1"
       android:versionName="1.0">
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="17" />
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application android:label="@string/app_name" android:icon="@drawable/ic_launcher">
         <activity android:name="PlayerListActivity"
                   android:label="@string/app_name">
@@ -11,5 +24,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name="com.vokal.mcplayer.db.PlayerContentProvider"
+            android:authorities="com.vokal.mcplayer.db" />
     </application>
 </manifest>
