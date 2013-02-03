@@ -22,6 +22,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase aDb) {
+        Log.w(TAG, "CREATING DATABASE");
         aDb.execSQL(
             "CREATE TABLE "  + TABLE_PLAYERS                         + " (" + 
             Player.ID        + " INTEGER PRIMARY KEY AUTOINCREMENT," + 

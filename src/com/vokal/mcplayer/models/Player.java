@@ -39,12 +39,26 @@ public class Player {
     }
 
     public Player(final JSONObject aData) throws JSONException {
-        android.util.Log.d("SHFHDSFKHSDLKFJSLKDJFLKSDJFLKSJDLFHKSL", aData.toString());
         mPlayerId = aData.getString(ID);
         mName     = aData.getString(NAME);
         mX        = aData.optInt(X);
         mY        = aData.optInt(Y);
         mZ        = aData.optInt(Z);
+    }
+
+    public static Player withName(final Context aContext, final String aName) {
+        Cursor data = aContext.getContentResolver()
+            .query(CONTENT_URI, ALL, NAME + " = '" + aName + "'", null, ID + " DESC LIMIT 1");
+
+        Player result = null;
+
+        if (data.moveToFirst()) {
+            result = fromCursor(data);
+        }
+
+        data.close();
+
+        return result;
     }
 
     public static void get(final Context aContext) throws Exception {
@@ -67,6 +81,7 @@ public class Player {
         Uri inserted = aContext.getContentResolver().insert(CONTENT_URI, values);
         try {
             mId = (int) ContentUris.parseId(inserted);
+            android.util.Log.d("SHDFHDJFSD", "ID: " + mId);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -78,7 +93,7 @@ public class Player {
             values.put(ID, mId);
         }
 
-        values.put(PLAYER_ID, mId);
+        values.put(PLAYER_ID, mPlayerId);
         values.put(NAME, mName);
         values.put(X, mX);
         values.put(Y, mY);

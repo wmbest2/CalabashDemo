@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">PlayerListActivity</string>
+   <string name="app_name">PlayerListActivity</string>
+   <string name="avatar_url">http://minecraft.aggenkeech.com/body.php?u=%1$s&amp;s=128&amp;r=255&amp;g=250&amp;b=238</string>
 </resources>
