@@ -27,7 +27,7 @@ public class DBHelper extends SQLiteOpenHelper {
             "CREATE TABLE "  + TABLE_PLAYERS                         + " (" + 
             Player.ID        + " INTEGER PRIMARY KEY AUTOINCREMENT," + 
             Player.PLAYER_ID + " VARCHAR UNIQUE,"                    + 
-            Player.NAME      + " VARCHAR,"                           + 
+            Player.NAME      + " VARCHAR UNIQUE,"                    + 
             Player.X         + " INTEGER,"                           + 
             Player.Y         + " INTEGER,"                           + 
             Player.Z         + " INTEGER"                            + 
